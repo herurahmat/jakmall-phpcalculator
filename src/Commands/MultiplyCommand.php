@@ -6,6 +6,7 @@ use Illuminate\Console\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Input\InputArgument;
+use Jakmall\Recruitment\Calculator\History\Infrastructure\CommandHistoryManagerInterface;
 
 class MultiplyCommand extends Command
 {
@@ -19,9 +20,12 @@ class MultiplyCommand extends Command
      */
     protected $description;
 
-    public function __construct()
+    public $logme;
+
+    public function __construct(CommandHistoryManagerInterface $logger)
     {
         parent::__construct();
+        $this->logme = $logger;
         $commandVerb = $this->getCommandVerb();
 
         $this->signature = sprintf(
@@ -58,7 +62,11 @@ class MultiplyCommand extends Command
         $numbers = $this->getInput();
         $description = $this->generateCalculationDescription($numbers);
         $result = $this->calculateAll($numbers);
-
+        $this->logme->log([
+            'command' => $this->getCommandVerb(),
+            'operation' => $description,
+            'result' => $result
+        ]);
         $this->comment(sprintf('%s = %s', $description, $result));
     }
 
