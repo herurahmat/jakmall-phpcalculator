@@ -1,7 +1,9 @@
 {
     "name": "jakmall/recruitment-calculator",
     "description": "Jakmall Software Engineer Technical Test : Jakmall Calculator.",
-    "keywords": ["jakmall"],
+    "keywords": [
+        "jakmall"
+    ],
     "license": "proprietary",
     "type": "project",
     "require": {
@@ -9,6 +11,8 @@
         "illuminate/console": "5.8.*",
         "illuminate/container": "5.8.*",
         "illuminate/events": "5.8.*",
+        "illuminate/http": "5.8.*",
+        "illuminate/routing": "5.8.*",
         "illuminate/support": "5.8.*"
     },
     "autoload": {
