@@ -6,7 +6,7 @@ use Illuminate\Console\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Input\InputArgument;
-use Jakmall\Recruitment\Calculator\History\CommandManage;
+use Jakmall\Recruitment\Calculator\History\CommandHistoryServiceProvider;
 
 class HistoryListCommand extends Command
 {
@@ -45,7 +45,7 @@ class HistoryListCommand extends Command
         $driver = $this->input->getOption('driver');
         $commands = $this->getCommand();
 
-        $manage=new CommandManage();
+        $manage=new CommandHistoryServiceProvider();
         $manage->driver= $driver;
         if(empty($driver))
         {
@@ -65,9 +65,7 @@ class HistoryListCommand extends Command
         return $this->argument('commands');
     }
 
-    /**
-     * @param array|collection $data
-     */
+
     private function createTable($data)
     {
         $tableContent = [];

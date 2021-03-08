@@ -4,14 +4,13 @@ namespace Jakmall\Recruitment\Calculator\Http\Controller;
 
 use Jakmall\Recruitment\Calculator\Http\Controller\JakmallController;
 use Illuminate\Http\Request;
-use Jakmall\Recruitment\Calculator\History\CommandManage;
-use Symfony\Component\HttpFoundation\Response;
+use Jakmall\Recruitment\Calculator\History\CommandHistoryServiceProvider;
 
 class HistoryController extends JakmallController
 {
     public function index(Request $request)
     {
-        $command = new CommandManage();
+        $command = new CommandHistoryServiceProvider();
         $command->driver = $request->driver? $request->driver:'latest';
         $data=$command->findAll();
         $count = count($data);
@@ -26,7 +25,7 @@ class HistoryController extends JakmallController
                 $precedence+=1;
                 $input="[".str_replace($operator,",",$row['operation'])."]";
                 $new_data[]=[
-                    'id'=> $precedence,
+                    'id'=> $row['id'],
                     'command'=>$row['command'],
                     'operation'=>$row['operation'],
                     'input'=> $input,
@@ -46,7 +45,7 @@ class HistoryController extends JakmallController
     {
         $id_array=[];
         $id_array[]=$id;
-        $command = new CommandManage();
+        $command = new CommandHistoryServiceProvider();
         $command->driver = 'composite';
         $data = $command->findAll($id_array);
         $count = count($data);
@@ -77,7 +76,7 @@ class HistoryController extends JakmallController
     {
         $id_array = [];
         $id_array[] = $id;
-        $command = new CommandManage();
+        $command = new CommandHistoryServiceProvider();
         $command->clear($id_array);
 
         return $this->JsonOutput([
