@@ -47,12 +47,12 @@ class PowerCommand extends Command
 
     protected function getCommandVerb(): string
     {
-        return 'pow';
+        return 'power';
     }
 
     protected function getCommandPassiveVerb(): string
     {
-        return 'pow';
+        return 'power';
     }
 
     public function handle(): void
