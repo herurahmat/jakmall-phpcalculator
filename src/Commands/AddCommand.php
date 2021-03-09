@@ -84,6 +84,12 @@ class AddCommand extends Command
         return $output;
     }
 
+    public function TestCaseInput($input)
+    {
+        $result = $this->calculateAll($input);
+        return $result;
+    }
+
     protected function getInput(): array
     {
         return $this->argument('numbers');

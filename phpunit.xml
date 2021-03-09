@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit bootstrap="vendor/autoload.php"> <!-- in here -->
+    <testsuites>
+        <testsuite name="Feature">
+            <directory suffix="AddTest.php">./tests/Feature</directory>
+            <directory suffix="DivideTest.php">./tests/Feature</directory>
+            <directory suffix="MultiplyTest.php">./tests/Feature</directory>
+            <directory suffix="PowerTest.php">./tests/Feature</directory>
+            <directory suffix="SubtractTest.php">./tests/Feature</directory>
+        </testsuite>
+    </testsuites>
+</phpunit>
